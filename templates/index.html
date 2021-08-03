@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en" dir = "ltr">
+    <title>
+        login
+    </title>
+    <head>
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+        
+    </head>
+    <body>
+      <div class="header">Hannovit</div>
+        {% csrf_token %}
+        <div class= "d1">
+            <form method= "POST" id="form" action="register">
+                {% csrf_token %}
+                <label for="name">Name</label>
+                    <input class="input" type='text' id="name" name='name'  required>
+                    
+                     <label for="pannumber">PAN Number</label>
+                    <input class="input" id="panno" type='text' name='panno' required>
+                      
+                     <label for="age">Age</label>
+                     <input class="input" type="text" id="age" name='age' required placeholder="">
+                     <br>
+                     <label for="gender">Gender</label>
+                     <select class="input" id='gender' name="gender">
+                        <option value="m">Male</option>
+                        <option value="f">Female</option>
+                      </select>
+                    
+                     <label for="email">Email</label> 
+                     <input class="input" type="email" id="email"  name='email' required placeholder="">
+                     <label for="city">City</label>
+                     <input class="input" type="text" id="city" name='city' required placeholder="">
+                     <br>
+                     <input type="submit" class="btn" value="Add">
+                     <button type="submit" class="btn" value="Search" formmethod="GET" >Search</button>
+            </form> 
+        </div>
+        <div class="d2">
+            <br>
+            <form action="sort" method="GET">
+              <label for="sort">Sort By:</label>
+              <select name='sort' id="option">
+              <option value="name" selected >Name</option>
+              <option value="panno">Pan no.</option>
+              <option value="city">City</option>
+              </select>
+              <button type="submit" class="btn">Sort</button>
+            </form>
+             <br>
+            <br>	
+            	
+            <table id="table">
+            <tr>
+              <th>S.no</th>
+              <th>Name</th>
+              <th>panno</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Email</th>
+              <th>City</th>
+              <th>Delete</th>
+              <th>Edit</th>
+            </tr>
+            {% for i in b %}
+            <tr>
+              <td >{{i.id}}</td>
+              <td>{{ i.name}}</td>
+              <td>{{ i.panno }}</td>
+              <td>{{ i.gender }}</td>
+              <td>{{ i.age }}</td>
+              <td>{{ i.email }}</td>
+              <td>{{ i.city }}</td>
+              <form method="GET" action="delete">
+              <td><button type="submit" class="btn" value="{{i.id}}" name="id">Delete</button></td>
+            </form>
+              <td><button value="{{i.id}}" class="btn" name="edit">Edit</button></td>
+            </tr>
+
+            {% endfor %}
+            </table>
+            <center>
+              <span class="step-links">
+                {% if b.has_previous %}
+                    <a href="?page=1">&laquo;First</a>
+                    <a href="?page={{ b.previous_page_number }}">Previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ b.number }} of {{ b.paginator.num_pages }}.
+                </span>
+        
+                {% if b.has_next %}
+                    <a href="?page={{ b.next_page_number }}">Next</a>
+                    <a href="?page={{ b.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </span>
+          </center>  
+        </div>
+        <div class="popup">
+          <div class="content">
+          <form action="alter" method="POST" class="form1">{% csrf_token %}        
+          </form>
+          <span id="close">X</span>
+        </div>
+        </div>
+    </body>
+    <script>
+      const table = document.querySelector('#table');
+      const popup = document.querySelector('.popup');
+      const form = document.querySelector('.form1');
+      table.addEventListener('click', () => {
+        if(event.target.classList.contains('btn')) {
+          let block = event.target.parentElement.parentElement;
+          popup.style.display = 'block';
+          form.innerHTML = '';
+          let ele = document.querySelector('#form #name').cloneNode();
+          ele.defaultValue = block.children[1].textContent;
+          form.appendChild(ele);
+          let pan = document.querySelector('#form #panno').cloneNode();
+          pan.defaultValue = block.children[2].textContent;
+          form.appendChild(pan);
+          let gender = document.createElement('select');
+          gender.setAttribute('name', 'gender');
+          gender.setAttribute('class', 'input');
+          gender.innerHTML = `<option value="m">Male</option>
+          <option value="f">Female</option>`;
+          form.appendChild(gender);
+          let age = document.querySelector('#form #age').cloneNode();
+          age.defaultValue = block.children[4].textContent;
+          form.appendChild(age);
+          let email = document.querySelector('#form #email').cloneNode();
+          email.defaultValue = block.children[5].textContent;
+          form.appendChild(email);
+          let city = document.querySelector('#form #city').cloneNode();
+          city.defaultValue = block.children[6].textContent;
+          form.appendChild(city);
+          form.innerHTML += '<button type="submit" value="'+block.children[0].textContent+'" name="id">save</button>';
+        }
+      })
+      document.querySelector('#close').addEventListener('click', () => {
+        popup.style.display = 'none';
+      })
+    </script>
+</html>

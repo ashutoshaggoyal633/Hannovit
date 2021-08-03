@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+        
+        table.center {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            align-self: auto;
+          }
+        </style>
+</head>
+<body>
+    {% csrf_token %}
+    <form action="" method="GET">
+    <div class="d2">
+      <br>
+      <label for="sort">Sort By:</label>
+      <select  id="sortby" name="sort">
+                          <option value="name" >Name</option>
+                          <option value="panno" onclick="result.html">Pan no.</option>
+                          <option value="city">City</option>
+      </select>
+    </div>
+    <input type="submit" value="sort">
+    <br>
+    <table >
+        <tr>
+            <th>S.no</th>
+          <th>Name</th>
+          <th>panno</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+        {% for i in b %}
+        <tr>
+            <td>{{i}}</td>
+          <td>{{ i.name}}</td>
+          <td>{{ i.panno }}</td>
+          <td>{{ i.gender }}</td>
+          <td>{{ i.age }}</td>
+          <td>{{ i.email }}</td>
+          </tr>
+          {% endfor %}
+    </table>
+       
+
+</body>
+</html>

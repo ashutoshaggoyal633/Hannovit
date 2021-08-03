@@ -1,0 +1,113 @@
+
+.d1{
+    border: 2px solid rgb(4, 218, 247);
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    padding: 10px;
+    }
+
+            .d2{
+                border: 2px solid rgb(0 255 203);
+                border-radius: 5px;
+                text-align: left;
+                position: absolute;
+                top: 30%;
+                left: 5%;
+                right: 5%;
+                padding: 8px;
+                }
+                        .input{
+                     width: 20%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid rgb(236, 213, 213);
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    font-size: 16px;
+                    background-color: transparent;
+                    }
+                    .input :focus {
+                        border: 1px solid transparent;
+                        background-color: transparent;
+                      }
+                       input[type=submit]:hover {
+                    background-color: rgb(4, 218, 247);
+                    }
+                        button:hover {
+                    background-color: rgb(4, 218, 247);
+                    }
+                    .label {
+                            color: black;
+                            padding: 8px;
+                            font-family: Arial;
+                            }
+                    table, th, td {
+                                    border: 1px solid #4c3954;
+                                    }
+                        
+                table {
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    align-self: auto;
+                  }
+                  .popup {
+                      display: none;
+                      height: 100%;
+                      width: 100%;
+                      position: fixed;
+                      top: 0;
+                      z-index: 10;
+                      bottom: 0;
+                      overflow: auto;
+                      background-color: rgb(235, 235, 235);
+                  }
+                  .form1 {
+                    
+                      height: auto;
+                      border: 10px solid grey;
+                      background-color: white;
+                      align-items: center;
+                      
+                  }
+                  .form1 input {
+                      width: 100%;
+                  }
+                  .content {
+                      position: relative;
+                      width: 80%;
+                    margin: 8%;
+                  }
+                  .popup span {
+                    position: absolute;
+                    top: 0%;
+                    right: 0%;
+                    background-color: black;
+                    color: white;
+                    padding: 6px;
+                    cursor: pointer;
+                  }
+                  .header{
+                    position: absolute;
+                    top: 0.1%;
+                    left: 0%;
+                    background-color: black;
+                    width: 100%;
+                    height: 4.5%;
+                    color: white;
+                    font-style: italic;
+                    font-size: x-large;
+                    text-align: center;
+                  }
+                  body{
+                      background-color:rgb(71, 194, 190) ;
+                  }
+                  .btn{
+                      background-color: #008072;
+                  }
+                  
